@@ -1,6 +1,10 @@
 #!/usr/bin/env perl
 
-# obmenu-generator - schema file
+# FILE: ~/.config/obmenu-generator/schema.pl
+# -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+# DESC: obmenu-generator - schema file
+# -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+# aHR0cHM6Ly9naXRodWIuY29tL293bDRjZS9kb3RmaWxlcwo=
 
 =for comment
 
@@ -24,67 +28,69 @@
 
 require "$ENV{HOME}/.config/obmenu-generator/config.pl";
 
-## Text editor
+# Text editor
 my $editor = $CONFIG->{editor};
 
 our $SCHEMA = [
-    {sep => "QUICK START"},
+    {sep       => "QUICK START"},
 
-    #         COMMAND                                                     LABEL                     ICON
-    {beg  => ["Launch Apps",                                                                        "$ENV{HOME}/.icons/gladient/search.png"]},
-    {cat  => ["utility",                                                  "Accessories",            "applications-utilities"]},
-    {cat  => ["development",                                              "Development",            "applications-development"]},
-    {cat  => ["education",                                                "Education",              "applications-science"]},
-    {cat  => ["game",                                                     "Games",                  "applications-games"]},
-    {cat  => ["graphics",                                                 "Graphics",               "applications-graphics"]},
-    {cat  => ["audiovideo",                                               "Multimedia",             "applications-multimedia"]},
-    {cat  => ["network",                                                  "Network",                "applications-internet"]},
-    {cat  => ["office",                                                   "Office",                 "applications-office"]},
-    {cat  => ["other",                                                    "Other",                  "applications-other"]},
-    {cat  => ["settings",                                                 "Settings",               "applications-accessories"]},
-    {cat  => ["system",                                                   "System",                 "applications-system"]},
-    {end  => undef},
+    #              COMMAND                                                                                                      LABEL                                ICON
+    {beg       => ["Launch Apps",                                                                                                                                    "$ENV{HOME}/.icons/Gladient/find.png"]},
+    {cat       => ["utility",                                                                                                   "Accessories",                       "applications-utilities"]},
+    {cat       => ["development",                                                                                               "Development",                       "applications-development"]},
+    {cat       => ["education",                                                                                                 "Education",                         "applications-science"]},
+    {cat       => ["game",                                                                                                      "Games",                             "applications-games"]},
+    {cat       => ["graphics",                                                                                                  "Graphics",                          "applications-graphics"]},
+    {cat       => ["audiovideo",                                                                                                "Multimedia",                        "applications-multimedia"]},
+    {cat       => ["network",                                                                                                   "Network",                           "applications-internet"]},
+    {cat       => ["office",                                                                                                    "Office",                            "applications-office"]},
+    {cat       => ["other",                                                                                                     "Other",                             "applications-other"]},
+    {cat       => ["settings",                                                                                                  "Settings",                          "applications-accessories"]},
+    {cat       => ["system",                                                                                                    "System",                            "applications-system"]},
+    {end       => undef},
     
-    {sep  => undef},
+    {sep       => undef},
     
-    {item => ["~/.scripts/default-apps/launch terminal",                  "Open Terminal",          "$ENV{HOME}/.icons/gladient/term.png"]},
-    {item => ["~/.scripts/default-apps/launch filemanager",               "Open File Manager",      "$ENV{HOME}/.icons/gladient/file-manager.png"]},
+    {item      => ["$ENV{HOME}/.scripts/launch-apps.sh terminal",                                                               "Open Terminal",                     "$ENV{HOME}/.icons/Gladient/terminal.png"]},
+    {item      => ["$ENV{HOME}/.scripts/launch-apps.sh file_manager",                                                           "Open File Manager",                 "$ENV{HOME}/.icons/Gladient/file-manager.png"]},
     
-    {sep  => undef},
+    {sep       => undef},
     
-    {beg  => ["Screenshot",                                                                         "$ENV{HOME}/.icons/gladient/shot.png"]},
-    {item => ["~/.scripts/shot-now delay",                                "Now",                    "$ENV{HOME}/.icons/gladient/shot.png"]},
-    {item => ["~/.scripts/shot-timer",                                    "After ..s",              "$ENV{HOME}/.icons/gladient/shot.png"]},
-    {item => ["~/.scripts/shot-seldraw",                                  "Select window or draw",  "$ENV{HOME}/.icons/gladient/shot.png"]},
-    {end  => undef},
+    {beg       => ["Screenshot",                                                                                                                                     "$ENV{HOME}/.icons/Gladient/screenshot.png"]},
+    {item      => ["$ENV{HOME}/.scripts/screenshot-now.sh delay",                                                               "Now",                               "$ENV{HOME}/.icons/Gladient/screenshot.png"]},
+    {item      => ["$ENV{HOME}/.scripts/screenshot-draw.sh",                                                                    "Click on window or draw rectangle", "$ENV{HOME}/.icons/Gladient/screenshot.png"]},
+    {item      => ["$ENV{HOME}/.scripts/screenshot-timer.sh",                                                                   "After ?s",                          "$ENV{HOME}/.icons/Gladient/screenshot.png"]},
+    {end       => undef},
     
-    {sep  => undef},
+    {sep       => undef},
     
-    {pipe => ["~/.config/openbox/pipe-menu/ob-randr.py",                  "Monitor Settings",       "$ENV{HOME}/.icons/gladient/mon-settings.png"]},
-    {obgenmenu => ["Advanced Settings",                                                             "$ENV{HOME}/.icons/gladient/settings.png"]},
+    {pipe      => ["$ENV{HOME}/.config/openbox/pipe-menu/ob-randr.py",                                                          "Monitor Settings",                  "$ENV{HOME}/.icons/Gladient/monitor-settings.png"]},
+    {obgenmenu => ["Advanced Settings",                                                                                                                              "$ENV{HOME}/.icons/Gladient/advanced-settings.png"]},
     
-    {sep  => undef},
+    {sep       => undef},
     
-    {sep => "SESSIONS"},
+    {sep       => "SESSIONS"},
     
-    {beg  => ["Theme Styling",                                                                      "$ENV{HOME}/.icons/gladient/themer.png"]},
-    {item => ["~/.scripts/default-apps/launch terminal -e ~/.config/openbox/visual-mode/wally","Change Wallpaper","$ENV{HOME}/.icons/gladient/wally.png"]},
-    {item => ["~/.config/openbox/visual-mode/termody",                    "Reverse Terminal Visual","$ENV{HOME}/.icons/gladient/term.png"]},
-    {sep  => undef},
-    {item => ["~/.scripts/default-apps/launch terminal -e ~/.config/openbox/visual-mode/ob-button","Change Button Style","$ENV{HOME}/.icons/gladient/obt-c.png"]},
-    {item => ["~/.config/openbox/visual-mode/ob-button swap",             "Swap Button [L/R]",      "$ENV{HOME}/.icons/gladient/obt-s.png"]},
-    {sep  => undef},
-    {item => ["~/.config/openbox/visual-mode/mode-toggle minimal",        "Toggle Minimal Mode",    "$ENV{HOME}/.icons/gladient/minimal.png"]},
-    {item => ["~/.config/openbox/visual-mode/mode-toggle",                "Switch Visual Mode",     "$ENV{HOME}/.icons/gladient/visual.png"]},
-    {end  => undef},
+    {beg       => ["Appearance",                                                                                                                                     "$ENV{HOME}/.icons/Gladient/appearance.png"]},
+    {item      => ["$ENV{HOME}/.config/openbox/joyful-desktop/terminal-set.sh reverse",                                         "Reverse terminal visual",           "$ENV{HOME}/.icons/Gladient/terminal-reverse-visual.png"]},
+    {item      => ["$ENV{HOME}/.scripts/launch-apps.sh terminal -e $ENV{HOME}/.config/openbox/joyful-desktop/wallpaper-set.sh", "Change X wallpaper",                "$ENV{HOME}/.icons/Gladient/wallpaper.png"]},
+    {sep       => undef},
+    {item      => ["$ENV{HOME}/.scripts/launch-apps.sh terminal -e $ENV{HOME}/.config/openbox/joyful-desktop/ob-button-set.sh", "Change window button-style",        "$ENV{HOME}/.icons/Gladient/ob-button-change.png"]},
+    {item      => ["$ENV{HOME}/.config/openbox/joyful-desktop/ob-button-set.sh swap",                                           "Swap window button-location",       "$ENV{HOME}/.icons/Gladient/ob-button-swap.png"]},
+    {sep       => undef},
+    {item      => ["$ENV{HOME}/.config/openbox/joyful-desktop/toggle-mode.sh mode",                                             "Toggle A/I Mode",                   "$ENV{HOME}/.icons/Gladient/mode.png"]},
+    {item      => ["$ENV{HOME}/.config/openbox/joyful-desktop/toggle-mode.sh",                                                  "Switch M/E Theme",                  "$ENV{HOME}/.icons/Gladient/theme.png"]},
+    {end       => undef},
     
-    {sep  => undef},
+    {sep       => undef},
     
-    {item => ["~/.config/openbox/visual-mode/mode-toggle just_ui",        "Restart UI",             "$ENV{HOME}/.icons/gladient/re-ui.png"]},
+    {item      => ["$ENV{HOME}/.config/openbox/joyful-desktop/toggle-mode.sh only_ui",                                          "Restart UI",                        "$ENV{HOME}/.icons/Gladient/restart-ui.png"]},
     
-    {sep  => undef},
+    {sep       => undef},
     
-    {item => ["~/.scripts/default-apps/launch lockscreen",                "Lockscreen",             "$ENV{HOME}/.icons/gladient/lock.png"]},
+    {item      => ["$ENV{HOME}/.scripts/launch-apps.sh lockscreen",                                                             "Lockscreen",                        "$ENV{HOME}/.icons/Gladient/lock.png"]},
     
-    {exit => ["Exit Openbox",                                                                       "$ENV{HOME}/.icons/gladient/logout.png"]},
+    {sep       => undef},
+    
+    {exit      => ["Exit Openbox",                                                                                                                                   "$ENV{HOME}/.icons/Gladient/logout.png"]},
 ]
