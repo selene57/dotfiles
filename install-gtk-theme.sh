@@ -4,11 +4,11 @@
 # Authors:
 #   Sam Hewitt <sam@snwh.org>
 #
-# Modified:
+# Modifiers:
 #   Selene Hines <selene57.dev@gmail.com>
 #
 # Description:
-#   An installation bash script for Sweetly GTK Theme, modified from Sam Hewitt's script for Paper GTK Theme.
+#   An installation bash script for Sweetly GTK Theme, modified by Sam Hewitt's Paper GTK Theme installation script.
 #
 # Legal Stuff:
 #
@@ -48,7 +48,7 @@ show_question '\tDo you want to continue? (Y)es, (N)o : '
 echo
 read INPUT
 case $INPUT in
-    [Yy]* ) main;;
+	[Yy]* ) main;;
     [Nn]* ) exit 99;;
     * ) echo; echo "Sorry, try again."; continue;;
 esac
@@ -56,44 +56,44 @@ esac
 
 function main {
 if [ "$UID" -eq "$ROOT_UID" ]; then
-    if [ -d /usr/share/themes/Sweetly ]; then
-        echo
-        show_question '\tFound an existing installation. Replace it? (Y)es, (N)o : ' 
-        echo
-        read INPUT
-        case $INPUT in
-            [Yy]* ) rm -Rf /usr/share/themes/Sweetly 2>/dev/null;;
-            [Nn]* );;
-            * ) clear; show_error '\tSorry, try again.'; main;;
-        esac
-    fi
-    echo "Installing..."
-    cp -R ./Sweetly/ /usr/share/themes/
-    chmod -R 755 /usr/share/themes/Sweetly
-    echo "Installation complete!"
-    echo "You will have to set your theme manually."
-    end
+	if [ -d /usr/share/themes/Sweetly ]; then
+		echo
+		show_question '\tFound an existing installation. Replace it? (Y)es, (N)o : ' 
+		echo
+		read INPUT
+		case $INPUT in
+			[Yy]* ) rm -Rf /usr/share/themes/Sweetly 2>/dev/null;;
+			[Nn]* );;
+		    * ) clear; show_error '\tSorry, try again.'; main;;
+		esac
+	fi
+	echo "Installing..."
+	cp -R ./Sweetly/ /usr/share/themes/
+	chmod -R 755 /usr/share/themes/Sweetly
+	echo "Installation complete!"
+	echo "You will have to set your theme manually."
+	end
 elif [ "$UID" -ne "$ROOT_UID" ]; then
-    if [ -d $HOME/.local/share/themes/Sweetly ]; then
-        echo
-        show_question '\tFound an existing installation. Replace it? (Y)es, (N)o : ' 
-        echo
-        read INPUT
-        case $INPUT in
-            [Yy]* ) rm -Rf "$HOME/.local/share/themes/Sweetly" 2>/dev/null;;
-            [Nn]* );;
-            * ) clear; show_error '\tSorry, try again.'; main;;
-        esac
-    fi
-    echo "Installing..."
-    # .local/share/themes
-    install -d $HOME/.local/share/themes
-    cp -R ./Sweetly/ $HOME/.local/share/themes/
-    # .themes
-    install -d $HOME/.themes
-    cp -R ./Sweetly/ $HOME/.themes/
-    echo "Installation complete!"
-    set
+	if [ -d $HOME/.local/share/themes/Sweetly ]; then
+		echo
+		show_question '\tFound an existing installation. Replace it? (Y)es, (N)o : ' 
+		echo
+		read INPUT
+		case $INPUT in
+			[Yy]* ) rm -Rf "$HOME/.local/share/themes/Sweetly" 2>/dev/null;;
+			[Nn]* );;
+		    * ) clear; show_error '\tSorry, try again.'; main;;
+		esac
+	fi
+	echo "Installing..."
+	# .local/share/themes
+	install -d $HOME/.local/share/themes
+	cp -R ./Sweetly/ $HOME/.local/share/themes/
+	# .themes
+	install -d $HOME/.themes
+	cp -R ./Paper/ $HOME/.themes/
+	echo "Installation complete!"
+	set
 fi
 }
 
@@ -105,7 +105,7 @@ show_question '\tDo you want to set Sweetly as desktop theme? (Y)es, (N)o : '
 echo
 read INPUT
 case $INPUT in
-    [Yy]* ) settheme;;
+	[Yy]* ) settheme;;
     [Nn]* ) end;;
     * ) echo; show_error "\aUh oh, invalid response. Please retry."; set;;
 esac
@@ -122,43 +122,43 @@ setthemegnome
 }
 
 function setthemegnome {
-if [ -d /usr/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/ ]; then 
-    echo
-    show_question '\tWould you like to use Sweetly as your GNOME Shell theme? (Y)es, (N)o : '
-    echo
-    read INPUT
-    case $INPUT in
-        [Yy]* ) gsettings set org.gnome.shell.extensions.user-theme name "Sweetly";;
-        [Nn]* ) end;;
-        * ) echo; show_error "\aUh oh, invalid response. Please retry."; set;;
-    esac
-    end
+if [ -d /usr/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/ ]; then	
+	echo
+	show_question '\tWould you like to use Sweetly as your GNOME Shell theme? (Y)es, (N)o : '
+	echo
+	read INPUT
+	case $INPUT in
+		[Yy]* ) gsettings set org.gnome.shell.extensions.user-theme name "Sweetly";;
+	    [Nn]* ) end;;
+	    * ) echo; show_error "\aUh oh, invalid response. Please retry."; set;;
+	esac
+	end
 else
-    end
+	end
 fi
 }
 
 function end {
-    echo "Exiting"
-    exit 0
+	echo "Exiting"
+	exit 0
 }
 
 
 ROOT_UID=0
 if [ "$UID" -ne "$ROOT_UID" ]; then
-    echo
-    echo "Sweetly GTK Theme will be installed in:"
-    echo
-    show_dir '\t$HOME/.local/share/themes'
-    echo
-    echo "To make them available to all users, run this script as root."
-    continue
+	echo
+	echo "Sweetly GTK Theme will be installed in:"
+	echo
+	show_dir '\t$HOME/.local/share/themes'
+	echo
+	echo "To make them available to all users, run this script as root."
+	continue
 else
-    echo
-    echo "Sweetly GTK Theme will be installed in:"
-    echo
-    show_dir '\t/usr/share/themes'
-    echo
-    echo "It will be available to all users."
-    continue
+	echo
+	echo "Sweetly GTK Theme will be installed in:"
+	echo
+	show_dir '\t/usr/share/themes'
+	echo
+	echo "It will be available to all users."
+	continue
 fi
