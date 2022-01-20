@@ -1,0 +1,20 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">sweetly-gtk-theme</name>
+  <shortdesc xml:lang="en">Sweetly Theme</shortdesc>
+  <homepage rdf:resource="http://github.com/owl4ce/dotfiles" />
+  <download-page rdf:resource="https://github.com/selene57/sweetly-gtk-theme" />
+  <bug-database rdf:resource="https://github.com/selene57/sweetly-gtk-theme/issues" />
+  <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Selene Hines</foaf:name>
+      <gnome:userid>selene57</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+</Project>
